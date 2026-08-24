@@ -1,0 +1,37 @@
+{% extends "admin_base.html" %}
+{% block titulo %}Utilizadores — Admin Kussoka Hub{% endblock %}
+{% block admin_titulo %}Utilizadores{% endblock %}
+{% block admin_subtitulo %}Gere as contas registadas na plataforma{% endblock %}
+
+{% block admin_content %}
+<div class="admin-card">
+  <h3>Todos os utilizadores ({{ usuarios|length }})</h3>
+  <div class="tabela-responsiva">
+  <table class="admin-table">
+    <thead>
+      <tr><th>Estado</th><th>Nome</th><th>Email</th><th>Cursos</th><th>Tipo</th><th>Registado em</th><th>Ações</th></tr>
+    </thead>
+    <tbody>
+      {% for u in usuarios %}
+      <tr>
+        <td>{% if u['online'] %}<span class="ponto-online" title="Online"></span>{% else %}<span class="ponto-offline" title="Offline"></span>{% endif %}</td>
+        <td><a href="{{ url_for('admin_usuario_detalhe', usuario_id=u['id']) }}">{{ u['nome'] }}</a></td>
+        <td>{{ u['email'] }}</td>
+        <td>{{ u['total_cursos'] }}</td>
+        <td>{% if u['is_admin'] %}<span class="tag-admin">Admin</span>{% else %}Utilizador{% endif %}</td>
+        <td>{{ u['data_criacao'][:10] }}</td>
+        <td class="acoes">
+          <form method="post" action="{{ url_for('admin_alternar_admin', usuario_id=u['id']) }}">
+            <button type="submit" class="btn-mini">{{ 'Remover admin' if u['is_admin'] else 'Tornar admin' }}</button>
+          </form>
+          <form method="post" action="{{ url_for('admin_excluir_usuario', usuario_id=u['id']) }}" onsubmit="return confirm('Tens a certeza que queres excluir este utilizador?');">
+            <button type="submit" class="btn-mini btn-perigo">Excluir</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}

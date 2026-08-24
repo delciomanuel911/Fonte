@@ -1,0 +1,45 @@
+{% extends "admin_base.html" %}
+{% block titulo %}{{ 'Editar Curso' if curso else 'Novo Curso' }} — Admin Kussoka Hub{% endblock %}
+{% block admin_titulo %}{{ 'Editar Curso' if curso else 'Adicionar Novo Curso' }}{% endblock %}
+{% block admin_subtitulo %}Preenche os dados do curso a apresentar no catálogo{% endblock %}
+
+{% block admin_content %}
+<div class="admin-card admin-card-form">
+  <form method="post" class="auth-form">
+    <label for="titulo">Título</label>
+    <input type="text" id="titulo" name="titulo" required value="{{ curso['titulo'] if curso else '' }}">
+
+    <label for="plataforma">Plataforma</label>
+    <input type="text" id="plataforma" name="plataforma" required value="{{ curso['plataforma'] if curso else '' }}" placeholder="Ex: Cisco NetAcad, Microsoft Learn...">
+
+    <label for="categoria">Categoria</label>
+    <select id="categoria" name="categoria">
+      {% for chave, rotulo in categorias_labels.items() %}
+      <option value="{{ chave }}" {{ 'selected' if curso and curso['categoria'] == chave else '' }}>{{ rotulo }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="duracao">Duração</label>
+    <input type="text" id="duracao" name="duracao" value="{{ curso['duracao'] if curso else '' }}" placeholder="Ex: 40h">
+
+    <label for="nivel">Nível</label>
+    <input type="text" id="nivel" name="nivel" value="{{ curso['nivel'] if curso else '' }}" placeholder="Ex: Iniciante">
+
+    <label for="imagem">URL da imagem de capa</label>
+    <input type="url" id="imagem" name="imagem" value="{{ curso['imagem'] if curso else '' }}" placeholder="https://...">
+
+    <label for="url">URL do curso (plataforma externa)</label>
+    <input type="url" id="url" name="url" required value="{{ curso['url'] if curso else '' }}" placeholder="https://...">
+
+    <label for="descricao">Descrição (opcional)</label>
+    <textarea id="descricao" name="descricao" rows="3">{{ curso['descricao'] if curso else '' }}</textarea>
+
+    <label class="checkbox-label">
+      <input type="checkbox" name="embed_bloqueado" {{ 'checked' if curso and curso['embed_bloqueado'] else '' }}>
+      Esta plataforma bloqueia exibição em iframe (mostrar aviso)
+    </label>
+
+    <button type="submit" class="auth-btn">{{ 'Guardar Alterações' if curso else 'Adicionar Curso' }}</button>
+  </form>
+</div>
+{% endblock %}

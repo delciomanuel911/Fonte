@@ -1,0 +1,35 @@
+{% extends "admin_base.html" %}
+{% block titulo %}{{ usuario['nome'] }} — Admin Kussoka Hub{% endblock %}
+{% block admin_titulo %}{{ usuario['nome'] }}{% endblock %}
+{% block admin_subtitulo %}{{ usuario['email'] }} · Registado em {{ usuario['data_criacao'][:10] }}{% endblock %}
+
+{% block admin_content %}
+<div class="admin-card">
+  <p><a href="{{ url_for('admin_usuarios') }}" class="link-voltar">← Voltar à lista de utilizadores</a></p>
+  <h3>{{ usuario['nome'] }} {% if usuario['is_admin'] %}<span class="tag-admin">Admin</span>{% endif %}</h3>
+
+  <h4 class="admin-subtitulo-secao">Cursos deste utilizador ({{ cursos|length }})</h4>
+  <div class="tabela-responsiva">
+  <table class="admin-table">
+    <thead><tr><th>Curso</th><th>Plataforma</th><th>Categoria</th><th>Estado</th><th>Desde</th></tr></thead>
+    <tbody>
+      {% for c in cursos %}
+      <tr>
+        <td>{{ c['titulo'] }}</td>
+        <td>{{ c['plataforma'] }}</td>
+        <td>{{ categorias_labels.get(c['categoria'], c['categoria']) }}</td>
+        <td>
+          {% if c['status'] == 'concluido' %}✅ Concluído
+          {% elif c['status'] == 'em_andamento' %}🕓 A fazer
+          {% else %}📌 Guardado{% endif %}
+        </td>
+        <td>{{ c['data_matricula'][:10] }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="5">Este utilizador ainda não guardou nenhum curso.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}

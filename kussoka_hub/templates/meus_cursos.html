@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block titulo %}Meus Cursos — Kussoka Hub{% endblock %}
+
+{% block conteudo %}
+<section class="courses-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Meus Cursos</h2>
+      <p>Os cursos que guardaste, estás a fazer ou já concluíste.</p>
+    </div>
+
+    {% if cursos|length == 0 %}
+      <p class="no-results">Ainda não guardaste nenhum curso. <a href="{{ url_for('cursos_catalogo') }}">Explora o catálogo</a>.</p>
+    {% endif %}
+
+    <div class="courses-grid">
+      {% for curso in cursos %}
+      <article class="course-card">
+        <div class="card-badge status-{{ curso['status'] }}">
+          {% if curso['status'] == 'concluido' %}Concluído
+          {% elif curso['status'] == 'em_andamento' %}A fazer
+          {% else %}Guardado{% endif %}
+        </div>
+        <div class="card-image">
+          <img src="{{ curso['imagem'] }}" alt="{{ curso['titulo'] }}" loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="course-category">{{ categorias_labels.get(curso['categoria'], curso['categoria']|capitalize) }}</span>
+          <h3 class="course-title">{{ curso['titulo'] }}</h3>
+          <p class="course-provider">Plataforma: <span>{{ curso['plataforma'] }}</span></p>
+
+          <div class="course-meta">
+            <span>⏱️ {{ curso['duracao'] or '—' }}</span>
+            <span>📊 {{ curso['nivel'] or '—' }}</span>
+          </div>
+
+          <a href="{{ url_for('visualizar_curso', curso_id=curso['id']) }}" class="btn-card">Continuar</a>
+          <form method="post" action="{{ url_for('remover_curso_da_lista', curso_id=curso['id']) }}" style="margin-top:8px;">
+            <button type="submit" class="btn-remover">Remover da lista</button>
+          </form>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

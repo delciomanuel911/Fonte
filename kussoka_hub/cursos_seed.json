@@ -1,0 +1,342 @@
+[
+  {
+    "titulo": "Introdução à Cibersegurança",
+    "plataforma": "Cisco Networking Academy",
+    "categoria": "redes",
+    "duracao": "6h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500",
+    "url": "https://www.netacad.com/courses/cybersecurity/introduction-cybersecurity",
+    "descricao": "Descobre as ameaças, ataques e vulnerabilidades mais comuns e o impacto da cibersegurança no dia a dia."
+  },
+  {
+    "titulo": "Networking Basics (Fundamentos de Redes)",
+    "plataforma": "Cisco Networking Academy",
+    "categoria": "redes",
+    "duracao": "20h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=500",
+    "url": "https://www.netacad.com/courses/networking-basics",
+    "descricao": "Aprende os conceitos básicos de redes de computadores e como elas funcionam."
+  },
+  {
+    "titulo": "Introdução à Internet das Coisas (IoT)",
+    "plataforma": "Cisco Networking Academy",
+    "categoria": "redes",
+    "duracao": "6h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500",
+    "url": "https://www.netacad.com/courses/iot",
+    "descricao": "Explora como a Internet das Coisas está a transformar indústrias e a criar novas oportunidades de carreira."
+  },
+  {
+    "titulo": "Python Essentials 1",
+    "plataforma": "Cisco Networking Academy",
+    "categoria": "programacao",
+    "duracao": "30h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500",
+    "url": "https://www.netacad.com/courses/python-essentials-1",
+    "descricao": "Programa da Cisco em parceria com o Python Institute para dominar os fundamentos do Python."
+  },
+  {
+    "titulo": "Ciência de Dados: uma Introdução",
+    "plataforma": "Cisco Networking Academy",
+    "categoria": "dados",
+    "duracao": "6h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500",
+    "url": "https://www.netacad.com/courses/data-science",
+    "descricao": "Entende como os dados estão a transformar o mundo e que profissões estão a surgir nessa área."
+  },
+  {
+    "titulo": "Junior Cybersecurity Analyst Career Path",
+    "plataforma": "Cisco Networking Academy",
+    "categoria": "redes",
+    "duracao": "70h",
+    "nivel": "Intermédio",
+    "imagem": "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=500",
+    "url": "https://www.netacad.com/courses/cybersecurity-analyst",
+    "descricao": "Percurso completo para te preparares para a certificação CCST em cibersegurança."
+  },
+  {
+    "titulo": "Introdução à Programação com JavaScript",
+    "plataforma": "Cisco Networking Academy",
+    "categoria": "programacao",
+    "duracao": "40h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=500",
+    "url": "https://www.netacad.com/courses/javascript-essentials-1",
+    "descricao": "Aprende a lógica de programação e os fundamentos do JavaScript do zero."
+  },
+  {
+    "titulo": "Descobrindo o Empreendedorismo",
+    "plataforma": "Cisco Networking Academy",
+    "categoria": "negocios",
+    "duracao": "6h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=500",
+    "url": "https://www.netacad.com/courses/entrepreneurship",
+    "descricao": "Desenvolve competências de empreendedorismo e resolução de problemas através de casos reais."
+  },
+  {
+    "titulo": "Excel Básico",
+    "plataforma": "Fundação Bradesco (Escola Virtual)",
+    "categoria": "negocios",
+    "duracao": "15h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1543286386-713bdd548da4?w=500",
+    "url": "https://www.ev.org.br",
+    "descricao": "Aprende as ferramentas essenciais do Excel para o dia a dia profissional."
+  },
+  {
+    "titulo": "Excel Avançado",
+    "plataforma": "Fundação Bradesco (Escola Virtual)",
+    "categoria": "negocios",
+    "duracao": "20h",
+    "nivel": "Avançado",
+    "imagem": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500",
+    "url": "https://www.ev.org.br",
+    "descricao": "Fórmulas avançadas, tabelas dinâmicas e automatização de planilhas."
+  },
+  {
+    "titulo": "Marketing Digital",
+    "plataforma": "Fundação Bradesco (Escola Virtual)",
+    "categoria": "negocios",
+    "duracao": "15h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=500",
+    "url": "https://www.ev.org.br",
+    "descricao": "Introdução às estratégias de marketing digital e redes sociais para negócios."
+  },
+  {
+    "titulo": "Lógica de Programação",
+    "plataforma": "Fundação Bradesco (Escola Virtual)",
+    "categoria": "programacao",
+    "duracao": "15h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=500",
+    "url": "https://www.ev.org.br",
+    "descricao": "Fundamentos de algoritmos e lógica para quem quer começar em programação."
+  },
+  {
+    "titulo": "Empreendedorismo",
+    "plataforma": "Fundação Bradesco (Escola Virtual)",
+    "categoria": "negocios",
+    "duracao": "15h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500",
+    "url": "https://www.ev.org.br",
+    "descricao": "Como estruturar uma ideia de negócio e transformá-la num plano viável."
+  },
+  {
+    "titulo": "Matemática Financeira",
+    "plataforma": "Fundação Bradesco (Escola Virtual)",
+    "categoria": "negocios",
+    "duracao": "15h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500",
+    "url": "https://www.ev.org.br",
+    "descricao": "Conceitos essenciais de juros, financiamentos e educação financeira."
+  },
+  {
+    "titulo": "Informática Básica",
+    "plataforma": "Fundação Bradesco (Escola Virtual)",
+    "categoria": "outros",
+    "duracao": "15h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500",
+    "url": "https://www.ev.org.br",
+    "descricao": "Primeiros passos no computador: sistema operativo, internet e aplicações do dia a dia."
+  },
+  {
+    "titulo": "Inglês Básico",
+    "plataforma": "Fundação Bradesco (Escola Virtual)",
+    "categoria": "idiomas",
+    "duracao": "20h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500",
+    "url": "https://www.ev.org.br",
+    "descricao": "Vocabulário e gramática essenciais para começar a comunicar em inglês."
+  },
+  {
+    "titulo": "Design Thinking",
+    "plataforma": "Fundação Bradesco (Escola Virtual)",
+    "categoria": "design",
+    "duracao": "15h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500",
+    "url": "https://www.ev.org.br",
+    "descricao": "Metodologia de resolução criativa de problemas centrada nas pessoas."
+  },
+  {
+    "titulo": "Microsoft Azure Fundamentals (AZ-900)",
+    "plataforma": "Microsoft Learn",
+    "categoria": "redes",
+    "duracao": "10h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500",
+    "url": "https://learn.microsoft.com/pt-br/training/paths/az-900-describe-cloud-concepts/",
+    "descricao": "Roteiro oficial da Microsoft com os conceitos fundamentais de computação em nuvem e Azure."
+  },
+  {
+    "titulo": "Fundamentos de Inteligência Artificial (AI-900)",
+    "plataforma": "Microsoft Learn",
+    "categoria": "dados",
+    "duracao": "8h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500",
+    "url": "https://learn.microsoft.com/pt-br/training/paths/get-started-with-artificial-intelligence-on-azure/",
+    "descricao": "Introdução aos conceitos de IA e Machine Learning aplicados ao Azure."
+  },
+  {
+    "titulo": "Introdução ao Power BI",
+    "plataforma": "Microsoft Learn",
+    "categoria": "dados",
+    "duracao": "6h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500",
+    "url": "https://learn.microsoft.com/pt-br/training/paths/data-analytics-microsoft/",
+    "descricao": "Aprende a analisar dados e criar dashboards com o Power BI."
+  },
+  {
+    "titulo": "Fundamentos do Microsoft 365 (MS-900)",
+    "plataforma": "Microsoft Learn",
+    "categoria": "negocios",
+    "duracao": "8h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500",
+    "url": "https://learn.microsoft.com/pt-br/training/paths/m365-fundamentals/",
+    "descricao": "Conceitos de nuvem, produtividade, segurança e conformidade no Microsoft 365."
+  },
+  {
+    "titulo": "Fundamentos de Segurança, Conformidade e Identidade (SC-900)",
+    "plataforma": "Microsoft Learn",
+    "categoria": "redes",
+    "duracao": "8h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500",
+    "url": "https://learn.microsoft.com/pt-br/training/paths/describe-concepts-of-security-compliance-identity/",
+    "descricao": "Conceitos essenciais de segurança, identidade e conformidade em ambientes Microsoft."
+  },
+  {
+    "titulo": "Introdução ao Power Automate",
+    "plataforma": "Microsoft Learn",
+    "categoria": "negocios",
+    "duracao": "5h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500",
+    "url": "https://learn.microsoft.com/pt-br/training/paths/automate-process-power-automate/",
+    "descricao": "Aprende a automatizar tarefas e processos de negócio sem escrever código."
+  },
+  {
+    "titulo": "Introdução ao GitHub",
+    "plataforma": "Microsoft Learn",
+    "categoria": "programacao",
+    "duracao": "4h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=500",
+    "url": "https://learn.microsoft.com/pt-br/training/paths/github-administration-products/",
+    "descricao": "Fundamentos de controlo de versões e colaboração em projetos com GitHub."
+  },
+  {
+    "titulo": "Fundamentos do Power Apps",
+    "plataforma": "Microsoft Learn",
+    "categoria": "programacao",
+    "duracao": "6h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500",
+    "url": "https://learn.microsoft.com/pt-br/training/paths/create-powerapps/",
+    "descricao": "Cria aplicações personalizadas sem necessidade de programação tradicional."
+  },
+  {
+    "titulo": "JavaScript: Fundamentos para Desenvolvimento Web Interativo",
+    "plataforma": "IFRS",
+    "categoria": "programacao",
+    "duracao": "40h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=500",
+    "url": "https://moodle.ifrs.edu.br",
+    "descricao": "Curso livre e gratuito do IFRS sobre lógica de programação e JavaScript."
+  },
+  {
+    "titulo": "Administrador de Banco de Dados",
+    "plataforma": "IFRS",
+    "categoria": "programacao",
+    "duracao": "60h",
+    "nivel": "Intermédio",
+    "imagem": "https://images.unsplash.com/photo-1544383835-bda2bb4a8fa3?w=500",
+    "url": "https://moodle.ifrs.edu.br",
+    "descricao": "Curso livre e gratuito de qualificação profissional em administração de bases de dados."
+  },
+  {
+    "titulo": "Administração Financeira",
+    "plataforma": "IFRS",
+    "categoria": "negocios",
+    "duracao": "40h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=500",
+    "url": "https://moodle.ifrs.edu.br",
+    "descricao": "Curso livre e gratuito sobre gestão financeira aplicada a empresas."
+  },
+  {
+    "titulo": "Administração Estratégica",
+    "plataforma": "IFRS",
+    "categoria": "negocios",
+    "duracao": "40h",
+    "nivel": "Intermédio",
+    "imagem": "https://images.unsplash.com/photo-1552581234-26160f608093?w=500",
+    "url": "https://moodle.ifrs.edu.br",
+    "descricao": "Curso livre e gratuito sobre planeamento e gestão estratégica organizacional."
+  },
+  {
+    "titulo": "Agente de Desenvolvimento Socioambiental",
+    "plataforma": "IFRS",
+    "categoria": "outros",
+    "duracao": "40h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1497436072909-f5e4be1713c6?w=500",
+    "url": "https://moodle.ifrs.edu.br",
+    "descricao": "Curso livre e gratuito sobre sustentabilidade e desenvolvimento socioambiental."
+  },
+  {
+    "titulo": "Agências de Viagem e Turismo",
+    "plataforma": "IFRS",
+    "categoria": "outros",
+    "duracao": "40h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500",
+    "url": "https://moodle.ifrs.edu.br",
+    "descricao": "Curso livre e gratuito sobre gestão e operação de agências de viagem."
+  },
+  {
+    "titulo": "Fundamentos de Redes de Computadores",
+    "plataforma": "Cisco NetAcad",
+    "categoria": "redes",
+    "duracao": "30h",
+    "nivel": "Intermédio",
+    "imagem": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=500",
+    "url": "https://www.netacad.com",
+    "descricao": "Fundamentos de redes de computadores, oferecido pela Cisco Networking Academy."
+  },
+  {
+    "titulo": "Linguagem Python - Modo Inicial",
+    "plataforma": "Fundação Bradesco",
+    "categoria": "programacao",
+    "duracao": "20h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500",
+    "url": "https://www.ev.org.br",
+    "descricao": "Primeiros passos com a linguagem Python, oferecido pela Fundação Bradesco."
+  },
+  {
+    "titulo": "Introdução ao Azure e Computação em Nuvem",
+    "plataforma": "Microsoft Learn",
+    "categoria": "redes",
+    "duracao": "15h",
+    "nivel": "Iniciante",
+    "imagem": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500",
+    "url": "https://learn.microsoft.com",
+    "descricao": "Introdução aos conceitos de computação em nuvem com o Microsoft Azure."
+  }
+]

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %}Criar Conta — Kussoka Hub{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block conteudo %}
+<section class="auth-section">
+  <div class="auth-card">
+    <h2>Criar a tua conta</h2>
+    <p class="auth-sub">Grátis e rápido. Começa a aprender em segundos.</p>
+
+    <form method="post" action="{{ url_for('cadastro') }}" class="auth-form">
+      <label for="nome">Nome completo</label>
+      <input type="text" id="nome" name="nome" value="{{ nome or '' }}" required placeholder="O teu nome">
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" value="{{ email or '' }}" required placeholder="teuemail@exemplo.com">
+
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" name="senha" required placeholder="Mínimo 6 caracteres">
+
+      <label for="confirmar_senha">Confirmar senha</label>
+      <input type="password" id="confirmar_senha" name="confirmar_senha" required placeholder="Repete a senha">
+
+      <button type="submit" class="auth-btn">Criar Conta</button>
+    </form>
+
+    <p class="auth-footer">Já tens conta? <a href="{{ url_for('login') }}">Entra aqui</a></p>
+  </div>
+</section>
+{% endblock %}

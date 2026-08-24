@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block titulo %}Catálogo de Cursos — Kussoka Hub{% endblock %}
+{% block meta_descricao %}Explora o catálogo completo de cursos gratuitos do Kussoka Hub. Pesquisa por nome, plataforma ou categoria e começa a aprender agora.{% endblock %}
+
+{% block conteudo %}
+
+<section class="catalogo-hero">
+  <div class="catalogo-hero-container">
+    <h1>Catálogo de Cursos</h1>
+    <p>Pesquisa entre todos os cursos gratuitos disponíveis no Kussoka Hub.</p>
+
+    <form class="search-box search-box-catalogo" method="get" action="{{ url_for('cursos_catalogo') }}">
+      <div class="input-group">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input
+          type="text"
+          name="q"
+          value="{{ termo }}"
+          placeholder="O que queres aprender hoje? (ex: Python, Redes, Design...)"
+          aria-label="Pesquisar cursos"
+        >
+      </div>
+      {% if categoria_selecionada %}
+      <input type="hidden" name="categoria" value="{{ categoria_selecionada }}">
+      {% endif %}
+      <button type="submit" class="search-btn">Pesquisar</button>
+    </form>
+  </div>
+</section>
+
+<section class="courses-section" id="cursos">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>{{ total_cursos }} curso(s) encontrado(s)</h2>
+      <p>Acede gratuitamente aos melhores conteúdos da web.</p>
+    </div>
+
+    <div class="filtros-categoria">
+      <a href="{{ url_for('cursos_catalogo', q=termo) }}" class="chip {{ 'chip-ativo' if not categoria_selecionada else '' }}">Todas</a>
+      {% for cat in categorias_disponiveis %}
+      <a href="{{ url_for('cursos_catalogo', q=termo, categoria=cat) }}" class="chip {{ 'chip-ativo' if categoria_selecionada == cat else '' }}">
+        {{ categorias_labels.get(cat, cat|capitalize) }}
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="courses-grid">
+      {% if cursos|length == 0 %}
+        <p class="no-results">Nenhum curso encontrado com esse termo. Tenta outra palavra-chave.</p>
+      {% endif %}
+
+      {% for curso in cursos %}
+      <article class="course-card">
+        <div class="card-badge">Gratuito</div>
+        <div class="card-image">
+          <img src="{{ curso['imagem'] }}" alt="{{ curso['titulo'] }}" loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="course-category">{{ categorias_labels.get(curso['categoria'], curso['categoria']|capitalize) }}</span>
+          <h3 class="course-title">{{ curso['titulo'] }}</h3>
+          <p class="course-provider">Plataforma: <span>{{ curso['plataforma'] }}</span></p>
+
+          <div class="course-meta">
+            <span>⏱️ {{ curso['duracao'] or '—' }}</span>
+            <span>📊 {{ curso['nivel'] or '—' }}</span>
+          </div>
+
+          {% if curso['id'] in matriculas_ids %}
+            <span class="badge-guardado">✓ Na tua lista</span>
+          {% endif %}
+
+          <a href="{{ url_for('visualizar_curso', curso_id=curso['id']) }}" class="btn-card">
+            Aceder na {{ curso['plataforma'] }}
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

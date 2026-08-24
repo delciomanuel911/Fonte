@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1B5E4A">
+
+    <title>{% block titulo %}Kussoka Hub — Cursos gratuitos, num só lugar{% endblock %}</title>
+    <meta name="description" content="{% block meta_descricao %}O Kussoka Hub reúne cursos online gratuitos de plataformas como Cisco Networking Academy, Microsoft Learn e outras, num só lugar — pesquisa, guarda o teu progresso e aprende sem custos.{% endblock %}">
+    <meta name="keywords" content="{% block meta_palavras %}cursos gratuitos, kussoka hub, formação online Angola, Cisco Networking Academy, Microsoft Learn, cursos online, aprender grátis{% endblock %}">
+    <meta name="author" content="Kussoka Hub">
+    <meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
+    <link rel="canonical" href="{{ request.url_root.rstrip('/') }}{{ request.path }}">
+
+    <!-- Open Graph / redes sociais -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Kussoka Hub">
+    <meta property="og:title" content="{% block og_titulo %}Kussoka Hub — Cursos gratuitos, num só lugar{% endblock %}">
+    <meta property="og:description" content="{% block og_descricao %}Reunimos os melhores cursos gratuitos da web numa única plataforma, com progresso guardado e acesso direto.{% endblock %}">
+    <meta property="og:locale" content="pt_AO">
+    <meta name="twitter:card" content="summary">
+
+    <!-- Favicon (SVG embutido — sem dependências externas) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231B5E4A'/%3E%3Ctext x='50%25' y='58%25' font-family='Poppins,Arial,sans-serif' font-size='34' font-weight='800' fill='%23F5F1E8' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+
+    <!-- Tipografia -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block estilos_extra %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+
+    <a href="#conteudo-principal" class="skip-link">Saltar para o conteúdo</a>
+
+    <header>
+        <div class="nav-bar">
+            <nav>
+                <a href="{{ url_for('index') }}" class="logo" aria-label="Kussoka Hub — página inicial">
+                    <span class="logo-badge">K</span>
+                    <span class="logo-texto">Kussoka<span>Hub</span></span>
+                </a>
+
+                <ul>
+                    <li><a href="{{ url_for('index') }}" class="{{ 'link-ativo' if endpoint_atual == 'index' else '' }}">Home</a></li>
+                    <li><a href="{{ url_for('cursos_catalogo') }}" class="{{ 'link-ativo' if endpoint_atual == 'cursos_catalogo' else '' }}">Cursos</a></li>
+                    <li><a href="{{ url_for('index') }}#sobre">Sobre</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Categorias</a>
+                        <div class="dropdown-content">
+                            {% for chave, rotulo in categorias_labels.items() %}
+                            <a href="{{ url_for('cursos_catalogo', categoria=chave) }}">{{ rotulo }}</a>
+                            {% endfor %}
+                        </div>
+                    </li>
+
+                    {% if usuario_atual %}
+                        <li><a href="{{ url_for('meus_cursos') }}" class="{{ 'link-ativo' if endpoint_atual == 'meus_cursos' else '' }}">Meus Cursos</a></li>
+                        {% if usuario_atual['is_admin'] %}
+                        <li><a href="{{ url_for('admin_dashboard') }}">Admin</a></li>
+                        {% endif %}
+                        <li class="user-pill">Olá, {{ usuario_atual['nome'].split(' ')[0] }}</li>
+                        <a href="{{ url_for('logout') }}">
+                            <button type="button" id="cont">Sair</button>
+                        </a>
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}">Entrar</a></li>
+                        <a href="{{ url_for('cadastro') }}">
+                            <button type="button" id="cont">Cadastrar</button>
+                        </a>
+                    {% endif %}
+                </ul>
+            </nav>
+            <button type="button" class="menu-img" id="btn" aria-label="Abrir menu" aria-expanded="True" aria-controls="menu">
+                <span class="menu-emoji">☰</span>
+            </button>
+        </div>
+
+        <nav class="menu" id="menu" aria-label="Menu móvel">
+            <a href="{{ url_for('index') }}" class="logo" aria-label="Kussoka Hub — página inicial">
+                    <span class="logo-badge">K</span>
+                    <span class="logo-texto">Kussoka<span>Hub</span></span>
+                </a>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('cursos_catalogo') }}">Cursos</a></li>
+                <li><a href="{{ url_for('index') }}#sobre">Sobre</a></li>
+                {% if usuario_atual %}
+                    <li><a href="{{ url_for('meus_cursos') }}">Meus Cursos</a></li>
+                    {% if usuario_atual['is_admin'] %}
+                    <li><a href="{{ url_for('admin_dashboard') }}">Admin</a></li>
+                    {% endif %}
+                    <li><a href="{{ url_for('logout') }}">Sair</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Entrar</a></li>
+                    <li><a href="{{ url_for('cadastro') }}">Cadastrar</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+        {% if mensagens %}
+        <div class="flash-container" role="status">
+            {% for categoria, mensagem in mensagens %}
+            <div class="flash flash-{{ categoria }}">{{ mensagem }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    <main id="conteudo-principal">
+    {% block conteudo %}{% endblock %}
+    </main>
+
+    {% block footer %}
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <a href="{{ url_for('index') }}" class="footer-logo">
+            <span class="logo-badge logo-badge-footer">K</span>
+            <span>Kussoka<span>Hub</span></span>
+          </a>
+          <p class="footer-desc">
+            A tua porta de entrada para o aprendizado. Compilamos os melhores cursos gratuitos da internet num só lugar.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('cursos_catalogo') }}">Cursos</a></li>
+            <li><a href="{{ url_for('index') }}#sobre">Sobre Nós</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Categorias</h4>
+          <ul>
+            {% for chave, rotulo in categorias_labels.items() %}
+            <li><a href="{{ url_for('cursos_catalogo', categoria=chave) }}">{{ rotulo }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Comunidade</h4>
+          <ul>
+            <li><a href="{{ url_for('cadastro') }}">Criar Conta</a></li>
+            <li><a href="{{ url_for('login') }}">Entrar</a></li>
+            {% if usuario_atual and usuario_atual['is_admin'] %}
+            <li><a href="{{ url_for('admin_dashboard') }}">Painel Admin</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; {{ ano_atual }} <strong>Kussoka Hub</strong>. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+    {% endblock %}
+
+    <button type="button" id="btn-topo" class="btn-topo" aria-label="Voltar ao topo">↑</button>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

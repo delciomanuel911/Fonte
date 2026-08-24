@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block titulo %}Entrar — Kussoka Hub{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block conteudo %}
+<section class="auth-section">
+  <div class="auth-card">
+    <h2>Entrar na tua conta</h2>
+    <p class="auth-sub">Acede ao teu progresso e continua a aprender.</p>
+
+    <form method="post" action="{{ url_for('login') }}" class="auth-form">
+      <input type="hidden" name="proximo" value="{{ proximo }}">
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" value="{{ email or '' }}" required placeholder="teuemail@exemplo.com">
+
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" name="senha" required placeholder="••••••••">
+
+      <button type="submit" class="auth-btn">Entrar</button>
+    </form>
+
+    <p class="auth-footer">Ainda não tens conta? <a href="{{ url_for('cadastro') }}">Cria uma agora</a></p>
+  </div>
+</section>
+{% endblock %}

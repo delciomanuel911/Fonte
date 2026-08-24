@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>{{ curso['titulo'] }} — Kussoka Hub</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231B5E4A'/%3E%3Ctext x='50%25' y='58%25' font-family='Poppins,Arial,sans-serif' font-size='34' font-weight='800' fill='%23F5F1E8' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/curso.css') }}">
+</head>
+<body>
+
+  <header class="viewer-header">
+    <div class="header-left">
+      <a href="{{ url_for('index') }}" class="btn-back">← Voltar ao Catálogo</a>
+      <span class="divider">|</span>
+      <h2 id="course-title-display">{{ curso['titulo'] }}</h2>
+    </div>
+
+    <div class="header-right">
+      <form id="status-form" class="status-form">
+        <select name="status" id="status-select">
+          <option value="salvo" {{ 'selected' if matricula and matricula['status'] == 'salvo' else '' }}>Guardado</option>
+          <option value="em_andamento" {{ 'selected' if matricula and matricula['status'] == 'em_andamento' else '' }}>A fazer</option>
+          <option value="concluido" {{ 'selected' if matricula and matricula['status'] == 'concluido' else '' }}>Concluído</option>
+        </select>
+      </form>
+      <a id="external-link" href="{{ curso['url'] }}" target="_blank" class="btn-external">
+        Abrir em Aba Externa ↗
+      </a>
+    </div>
+  </header>
+
+  {% if curso['embed_bloqueado'] %}
+  <div class="aviso-bloqueio">
+    ⚠️ Esta plataforma pode bloquear a exibição embutida. Se a área abaixo ficar em branco,
+    usa o botão "Abrir em Aba Externa".
+  </div>
+  {% endif %}
+
+  <main class="iframe-container">
+    <iframe id="course-iframe" src="{{ curso['url'] }}" frameborder="0" allowfullscreen></iframe>
+  </main>
+
+  <script>
+    const cursoId = {{ curso['id'] }};
+    const statusSelect = document.getElementById('status-select');
+
+    statusSelect.addEventListener('change', async () => {
+      try {
+        const resposta = await fetch(`/curso/${cursoId}/status`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: `status=${encodeURIComponent(statusSelect.value)}`
+        });
+        if (!resposta.ok) {
+          console.error('Não foi possível atualizar o estado do curso.');
+        }
+      } catch (erro) {
+        console.error('Erro ao atualizar estado:', erro);
+      }
+    });
+  </script>
+</body>
+</html>

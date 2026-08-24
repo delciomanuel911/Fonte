@@ -1,0 +1,109 @@
+{% extends "admin_base.html" %}
+{% block titulo %}Painel Admin — Kussoka Hub{% endblock %}
+{% block admin_titulo %}Visão Geral{% endblock %}
+{% block admin_subtitulo %}Estado atual da plataforma em tempo real{% endblock %}
+
+{% block admin_content %}
+
+<div class="admin-stats">
+  <div class="stat-card">
+    <span class="stat-icone" aria-hidden="true">🎓</span>
+    <span class="stat-numero">{{ total_cursos }}</span>
+    <span class="stat-label">Cursos no catálogo</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-icone" aria-hidden="true">👥</span>
+    <span class="stat-numero">{{ total_usuarios }}</span>
+    <span class="stat-label">Utilizadores registados</span>
+  </div>
+  <div class="stat-card stat-card-online">
+    <span class="stat-icone" aria-hidden="true">🟢</span>
+    <span class="stat-numero">{{ total_online }}</span>
+    <span class="stat-label">Utilizadores online agora</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-icone" aria-hidden="true">📌</span>
+    <span class="stat-numero">{{ total_matriculas }}</span>
+    <span class="stat-label">Cursos guardados/feitos</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-icone" aria-hidden="true">🕓</span>
+    <span class="stat-numero">{{ total_em_andamento }}</span>
+    <span class="stat-label">Cursos em andamento agora</span>
+  </div>
+</div>
+
+<div class="admin-grid-2">
+  <div class="admin-card">
+    <h3>🟢 Utilizadores online (últimos {{ janela_online_minutos }} min)</h3>
+    {% if usuarios_online|length == 0 %}
+      <p class="admin-vazio">Nenhum utilizador ativo neste momento.</p>
+    {% else %}
+    <table class="admin-table">
+      <thead><tr><th>Nome</th><th>Email</th><th>Última atividade</th></tr></thead>
+      <tbody>
+        {% for u in usuarios_online %}
+        <tr>
+          <td><a href="{{ url_for('admin_usuario_detalhe', usuario_id=u['id']) }}">{{ u['nome'] }}</a></td>
+          <td>{{ u['email'] }}</td>
+          <td>{{ u['ultimo_login'][11:16] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+
+  <div class="admin-card">
+    <h3>🕓 Quem está a fazer o quê, agora</h3>
+    {% if atividade_recente|length == 0 %}
+      <p class="admin-vazio">Nenhum curso marcado como "a fazer" neste momento.</p>
+    {% else %}
+    <table class="admin-table">
+      <thead><tr><th>Utilizador</th><th>Curso</th><th>Plataforma</th></tr></thead>
+      <tbody>
+        {% for a in atividade_recente %}
+        <tr>
+          <td><a href="{{ url_for('admin_usuario_detalhe', usuario_id=a['usuario_id']) }}">{{ a['usuario_nome'] }}</a></td>
+          <td>{{ a['curso_titulo'] }}</td>
+          <td>{{ a['curso_plataforma'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+
+  <div class="admin-card">
+    <h3>⭐ Cursos mais populares</h3>
+    <table class="admin-table">
+      <thead><tr><th>Curso</th><th>Plataforma</th><th>Alunos</th></tr></thead>
+      <tbody>
+        {% for c in cursos_populares %}
+        <tr>
+          <td><a href="{{ url_for('admin_curso_editar', curso_id=c['id']) }}">{{ c['titulo'] }}</a></td>
+          <td>{{ c['plataforma'] }}</td>
+          <td>{{ c['total'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="admin-card">
+    <h3>🆕 Utilizadores recentes</h3>
+    <table class="admin-table">
+      <thead><tr><th>Nome</th><th>Email</th></tr></thead>
+      <tbody>
+        {% for u in usuarios_recentes %}
+        <tr>
+          <td><a href="{{ url_for('admin_usuario_detalhe', usuario_id=u['id']) }}">{{ u['nome'] }}</a></td>
+          <td>{{ u['email'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

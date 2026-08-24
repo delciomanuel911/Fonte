@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Erro {{ codigo }} — Kussoka Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; text-align: center; flex-direction: column; gap: 14px;
+      background: #10392D; color: #F6F2E9; font-family: 'Inter', sans-serif; padding: 20px;
+    }
+    h1 { font-family: 'Poppins', sans-serif; font-size: 4rem; margin: 0; color: #C98A4B; }
+    p { color: #C7DAD0; max-width: 380px; }
+    a { color: #C98A4B; text-decoration: none; font-weight: 700; }
+    a:hover { color: #E0A96A; }
+  </style>
+</head>
+<body>
+  <h1>{{ codigo }}</h1>
+  <p>{{ mensagem }}</p>
+  <a href="{{ url_for('index') }}">← Voltar à página inicial</a>
+</body>
+</html>

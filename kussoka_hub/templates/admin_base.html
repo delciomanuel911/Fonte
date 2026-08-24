@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block conteudo %}
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar-topo">
+      <span class="logo-badge">K</span>
+      <div>
+        <strong>Painel Admin</strong>
+        <span>Kussoka Hub</span>
+      </div>
+    </div>
+
+    <nav class="admin-nav" aria-label="Navegação do painel">
+      <a href="{{ url_for('admin_dashboard') }}" class="{{ 'admin-nav-ativo' if endpoint_atual == 'admin_dashboard' else '' }}">
+        <span aria-hidden="true">📊</span> Visão Geral
+      </a>
+      <a href="{{ url_for('admin_usuarios') }}" class="{{ 'admin-nav-ativo' if endpoint_atual in ['admin_usuarios', 'admin_usuario_detalhe'] else '' }}">
+        <span aria-hidden="true">👥</span> Utilizadores
+      </a>
+      <a href="{{ url_for('admin_cursos') }}" class="{{ 'admin-nav-ativo' if endpoint_atual in ['admin_cursos', 'admin_curso_novo', 'admin_curso_editar'] else '' }}">
+        <span aria-hidden="true">🎓</span> Cursos
+      </a>
+    </nav>
+
+    <div class="admin-sidebar-rodape">
+      <a href="{{ url_for('index') }}">← Voltar ao site</a>
+    </div>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <div>
+        <h1>{% block admin_titulo %}Painel de Administração{% endblock %}</h1>
+        <p>{% block admin_subtitulo %}Informações e gestão da plataforma{% endblock %}</p>
+      </div>
+      {% if usuario_atual %}
+      <div class="admin-topbar-user">
+        <span class="admin-avatar">{{ usuario_atual['nome'][0]|upper }}</span>
+        <span>{{ usuario_atual['nome'] }}</span>
+      </div>
+      {% endif %}
+    </header>
+
+    {% block admin_content %}{% endblock %}
+  </div>
+</div>
+{% endblock %}

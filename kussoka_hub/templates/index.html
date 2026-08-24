@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% block titulo %}Kussoka Hub — Cursos gratuitos, num só lugar{% endblock %}
+
+{% block conteudo %}
+
+<section class="hero-section">
+  <div class="hero-container">
+    <span class="hero-badge">Plataforma 100% Gratuita</span>
+    <h1 class="hero-title">Kussoka Hub</h1>
+    <p class="hero-slogan">A tua porta de entrada para o aprendizado.</p>
+
+    <form class="search-box" method="get" action="{{ url_for('cursos_catalogo') }}">
+      <div class="input-group">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input
+          type="text"
+          name="q"
+          placeholder="O que queres aprender hoje? (ex: Python, Redes, Design...)"
+          aria-label="Pesquisar cursos"
+        >
+      </div>
+      <button type="submit" class="search-btn">Explorar Cursos</button>
+    </form>
+
+    <div class="quick-tags">
+      <span>Pesquisas populares:</span>
+      <a href="{{ url_for('cursos_catalogo', q='Python') }}">Python</a>
+      <a href="{{ url_for('cursos_catalogo', q='Redes') }}">Redes</a>
+      <a href="{{ url_for('cursos_catalogo', q='JavaScript') }}">JavaScript</a>
+      <a href="{{ url_for('cursos_catalogo', q='Design') }}">UI/UX Design</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <strong>{{ total_cursos_catalogo }}+</strong>
+        <span>cursos no catálogo</span>
+      </div>
+      <div class="hero-stat">
+        <strong>{{ total_plataformas }}+</strong>
+        <span>plataformas parceiras</span>
+      </div>
+      <div class="hero-stat">
+        <strong>100%</strong>
+        <span>gratuito, sempre</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="courses-section" id="cursos">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>Amostra de Cursos</h2>
+      <p>Uma pequena vitrine do que encontras no catálogo completo — {{ total_cursos_catalogo }} curso(s) disponíveis.</p>
+    </div>
+
+    <div class="courses-grid">
+      {% for curso in cursos %}
+      <article class="course-card">
+        <div class="card-badge">Gratuito</div>
+        <div class="card-image">
+          <img src="{{ curso['imagem'] }}" alt="{{ curso['titulo'] }}" loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="course-category">{{ categorias_labels.get(curso['categoria'], curso['categoria']|capitalize) }}</span>
+          <h3 class="course-title">{{ curso['titulo'] }}</h3>
+          <p class="course-provider">Plataforma: <span>{{ curso['plataforma'] }}</span></p>
+
+          <div class="course-meta">
+            <span>⏱️ {{ curso['duracao'] or '—' }}</span>
+            <span>📊 {{ curso['nivel'] or '—' }}</span>
+          </div>
+
+          {% if curso['id'] in matriculas_ids %}
+            <span class="badge-guardado">✓ Na tua lista</span>
+          {% endif %}
+
+          <a href="{{ url_for('visualizar_curso', curso_id=curso['id']) }}" class="btn-card">
+            Aceder na {{ curso['plataforma'] }}
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="ver-todos-container">
+      <a href="{{ url_for('cursos_catalogo') }}" class="btn-secundario">Ver catálogo completo ({{ total_cursos_catalogo }} cursos) →</a>
+    </div>
+  </div>
+</section>
+
+<section class="about-section" id="sobre">
+  <div class="about-container">
+    <span class="about-badge">Conheça o Projeto</span>
+    <h2>Sobre o Kussoka Hub</h2>
+    <p class="about-description">
+      O <strong>Kussoka Hub</strong> é uma Plataforma agregadora de cursos online gratuitos. O nosso objetivo de facilitar o acesso ao conhecimento livre e de qualidade.
+      Funcionamos como uma ponte direta entre estudantes e as melhores plataformas de ensino gratuito do mundo —
+      tudo dentro de uma única experiência, com o teu progresso guardado.
+    </p>
+
+    <div class="about-pilares">
+      <div class="pilar-card">
+        <div class="pilar-icone" aria-hidden="true">🌱</div>
+        <h4>Visão</h4>
+        <p>Ser a principal porta de entrada para a educação gratuita em Angola e na comunidade lusófona, tornando o acesso ao conhecimento tão simples como abrir uma aba no navegador.</p>
+      </div>
+
+      <div class="pilar-card">
+        <div class="pilar-icone" aria-hidden="true">🎯</div>
+        <h4>Missão</h4>
+        <p>Reunir, organizar e simplificar o acesso a cursos gratuitos de plataformas de referência, eliminando a fricção de procurar conteúdo de qualidade espalhado pela internet.</p>
+      </div>
+
+      <div class="pilar-card">
+        <div class="pilar-icone" aria-hidden="true">🤝</div>
+        <h4>Valores</h4>
+        <p>Clareza na informação, responsabilidade na forma como tratamos os dados de cada utilizador, e confiança construída com transparência em cada curso apresentado.</p>
+      </div>
+    </div>
+
+    <div class="about-features">
+      <div class="feature-item">
+        <div class="feature-icon">🚀</div>
+        <div>
+          <h4>100% Gratuito</h4>
+          <p>Apenas cursos sem custos de inscrição ou mensalidades.</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">🎯</div>
+        <div>
+          <h4>Tudo num só lugar</h4>
+          <p>Navega e faz os cursos sem sair do Kussoka Hub, graças ao visualizador embutido.</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">📈</div>
+        <div>
+          <h4>Progresso guardado</h4>
+          <p>Cria conta e acompanha os cursos que guardaste, estás a fazer ou já concluíste.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-cta">
+      <p>Pronto para começar a aprender sem gastar nada?</p>
+      <a href="{{ url_for('cursos_catalogo') }}" class="btn-secundario">Explorar o catálogo completo →</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

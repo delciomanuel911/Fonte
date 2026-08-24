@@ -1,0 +1,36 @@
+{% extends "admin_base.html" %}
+{% block titulo %}Cursos — Admin Kussoka Hub{% endblock %}
+{% block admin_titulo %}Cursos{% endblock %}
+{% block admin_subtitulo %}Gere o catálogo de cursos disponível na plataforma{% endblock %}
+
+{% block admin_content %}
+<div class="admin-card">
+  <div class="admin-card-header">
+    <h3>Todos os cursos ({{ cursos|length }})</h3>
+    <a href="{{ url_for('admin_curso_novo') }}" class="btn-secundario btn-secundario-mini">+ Novo Curso</a>
+  </div>
+  <div class="tabela-responsiva">
+  <table class="admin-table">
+    <thead>
+      <tr><th>Título</th><th>Plataforma</th><th>Categoria</th><th>Alunos</th><th>Ações</th></tr>
+    </thead>
+    <tbody>
+      {% for c in cursos %}
+      <tr>
+        <td>{{ c['titulo'] }}</td>
+        <td>{{ c['plataforma'] }}</td>
+        <td>{{ categorias_labels.get(c['categoria'], c['categoria']) }}</td>
+        <td>{{ c['total_alunos'] }}</td>
+        <td class="acoes">
+          <a href="{{ url_for('admin_curso_editar', curso_id=c['id']) }}" class="btn-mini">Editar</a>
+          <form method="post" action="{{ url_for('admin_curso_excluir', curso_id=c['id']) }}" onsubmit="return confirm('Excluir este curso do catálogo?');">
+            <button type="submit" class="btn-mini btn-perigo">Excluir</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}
